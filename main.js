@@ -51,7 +51,17 @@ clearAll.addEventListener("click", () => {
     localStorage.setItem("todo-list", JSON.stringify(todos));
     showTodo()
 });
-
+function updateStatus(selectedTask) {
+    let taskName = selectedTask.parentElement.lastElementChild;
+    if (selectedTask.checked) {
+        taskName.classList.add("checked");
+        todos[selectedTask.id].status = "completed";
+    } else {
+        taskName.classList.remove("checked");
+        todos[selectedTask.id].status = "pending";
+    }
+    localStorage.setItem("todo-list", JSON.stringify(todos))
+}
 // Event listener 
 taskInput.addEventListener("keyup", e => {
     let userTask = taskInput.value.trim();
